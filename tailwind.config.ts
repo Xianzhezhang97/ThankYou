@@ -1,0 +1,197 @@
+/** @format */
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  darkMode: 'class',
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './component/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './stories/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '65ch',
+            color: 'inherit',
+            a: {
+              color: 'inherit',
+              textDecoration: 'none',
+              '&:hover': {
+                textDecoration: 'underline',
+              },
+            },
+            '[class~="lead"]': {
+              color: 'inherit',
+            },
+            strong: {
+              color: 'inherit',
+            },
+            h1: {
+              color: 'inherit',
+            },
+            h2: {
+              color: 'inherit',
+            },
+            h3: {
+              color: 'inherit',
+            },
+            h4: {
+              color: 'inherit',
+            },
+            blockquote: {
+              color: 'inherit',
+            },
+            code: {
+              color: 'inherit',
+            },
+          },
+        },
+      },
+      colors: {
+        primary: {
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
+          950: '#082f49',
+        },
+        secondary: {
+          50: '#f5f3ff',
+          100: '#ede9fe',
+          200: '#ddd6fe',
+          300: '#c4b5fd',
+          400: '#a78bfa',
+          500: '#8b5cf6',
+          600: '#7c3aed',
+          700: '#6d28d9',
+          800: '#5b21b6',
+          900: '#4c1d95',
+          950: '#2e1065',
+        },
+        success: {
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#22c55e',
+          600: '#16a34a',
+          700: '#15803d',
+          800: '#166534',
+          900: '#14532d',
+          950: '#052e16',
+        },
+        warning: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+          950: '#451a03',
+        },
+        danger: {
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#ef4444',
+          600: '#dc2626',
+          700: '#b91c1c',
+          800: '#991b1b',
+          900: '#7f1d1d',
+          950: '#450a0a',
+        },
+        chart1: 'var(--chart-1)',
+        chart2: 'var(--chart-2)',
+        chart3: 'var(--chart-3)',
+        chart4: 'var(--chart-4)',
+        chart5: 'var(--chart-5)',
+        sidebar: 'var(--sidebar)',
+        sidebarForeground: 'var(--sidebar-foreground)',
+        sidebarPrimary: 'var(--sidebar-primary)',
+        sidebarPrimaryForeground: 'var(--sidebar-primary-foreground)',
+        sidebarAccent: 'var(--sidebar-accent)',
+        sidebarAccentForeground: 'var(--sidebar-accent-foreground)',
+        sidebarBorder: 'var(--sidebar-border)',
+        sidebarRing: 'var(--sidebar-ring)',
+      },
+      borderRadius: {
+        sm: '12px',
+        md: '14px',
+        lg: '28px',
+        xl: '36px',
+        full: '9999px',
+      },
+      padding: {
+        sm: '12px',
+        md: '14px',
+        lg: '28px',
+        xl: '36px',
+        full: '9999px',
+      },
+      gap: {
+        sm: '12px',
+        md: '14px',
+        lg: '28px',
+        xl: '36px',
+        full: '9999px',
+      },
+      margin: {
+        sm: '12px',
+        md: '14px',
+        lg: '28px',
+        xl: '36px',
+        full: '9999px',
+      },
+      spacing: {
+        sm: '12px',
+        md: '14px',
+        lg: '28px',
+        xl: '36px',
+        full: '9999px',
+        1: '0.25rem',
+        2: '0.5rem',
+        3: '0.75rem',
+        4: '1rem',
+        5: '1.25rem',
+        6: '1.5rem',
+        8: '2rem',
+        10: '2.5rem',
+        12: '3rem',
+      },
+      keyframes: {
+        'circle-draw': {
+          '0%': { strokeDashoffset: '565.48' },
+          '100%': { strokeDashoffset: '0' },
+        },
+        'tick-draw': {
+          '0%': { strokeDashoffset: '240' },
+          '100%': { strokeDashoffset: '0' },
+        },
+      },
+      animation: {
+        'circle-draw': 'circle-draw 1s ease-in-out forwards',
+        'tick-draw': 'tick-draw 0.8s ease-out forwards',
+      },
+    },
+  },
+
+  plugins: [require('@tailwindcss/typography')],
+};
+export default config;
