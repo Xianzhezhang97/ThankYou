@@ -1,5 +1,3 @@
-/** @format */
-
 'use client';
 import { useState } from 'react';
 import { Button } from '@/stories/Components/Button/Button';
@@ -12,6 +10,7 @@ import { getStats } from './data/stats';
 import messages from './data/messages.json';
 import type { ContentMessages } from './types';
 import Link from 'next/link';
+import { Number } from '@/stories/Components/Number/Number';
 
 export default function OfferAnnouncement() {
   const [darkMode, setDarkMode] = useState(false);
@@ -37,7 +36,10 @@ export default function OfferAnnouncement() {
         className='flex  p-3  flex justify-end
        w-full right-0 flex items-center gap-3 z-10'
       >
-        <a href='https://xianzhe.site/' target='_blank'>
+        <a
+          href='https://xianzhe.site/'
+          target='_blank'
+        >
           <Button
             variant='icon'
             isPadding={false}
