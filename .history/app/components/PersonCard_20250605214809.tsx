@@ -25,7 +25,7 @@ export const PersonCard = ({ person, index, darkMode }: PersonCardProps) => {
         darkMode
           ? 'bg-sky-950 border-sky-900'
           : 'bg-yellow-50/20 border-zinc-200'
-      } border `}
+      } border transition-all duration-300`}
     >
       <Link
         href={person.url || '#'}
@@ -34,12 +34,12 @@ export const PersonCard = ({ person, index, darkMode }: PersonCardProps) => {
       >
         <LinkedInAvatar name={person.name} src={person.src} url={person.url} />
         <div className='flex-1'>
-          <h3 className='text-base md:text-xl font-bold mb-1'>{person.name}</h3>
+          <h3 className='text-xl font-bold mb-1'>{person.name}</h3>
           <div className='flex items-center gap-2 mb-2'>
             <Trophy className='w-4 h-4 text-yellow-500' />
             <span
-              className={`text-[10px] md:text-sm font-medium
-                ${isExpand ? '' : ''}
+              className={`text-sm font-medium
+                ${isExpand ? 'c' : ''}
                 ${darkMode ? 'text-yellow-400' : 'text-yellow-600'}`}
             >
               {person.award}

@@ -151,9 +151,7 @@ export default function OfferAnnouncement() {
 
         {/* 感谢部分 */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+
           className='mb-12'
         >
           <div className='flex items-center gap-3 mb-8'>
