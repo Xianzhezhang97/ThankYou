@@ -131,7 +131,7 @@ export default function OfferAnnouncement() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '0px 0px -200px 0px' }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 1}}
           className='flex gap-4  items-center my-12 '
         >
           <div
@@ -179,7 +179,7 @@ export default function OfferAnnouncement() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '0px 0px -200px 0px' }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8 }}
             className='flex gap-4  items-center my-12 '
           >
             <div
@@ -202,7 +202,7 @@ export default function OfferAnnouncement() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '0px 0px -200px 0px' }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 1}}
             className={` p-xl rounded-xl border  ${
               darkMode
                 ? 'bg-gradient-to-r from-blue-900 to-indigo-900 border-blue-700'
