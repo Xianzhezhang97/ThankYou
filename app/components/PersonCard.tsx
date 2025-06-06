@@ -22,8 +22,12 @@ export const PersonCard = ({ person, index, darkMode }: PersonCardProps) => {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        transition: { duration: 1, ease: 'easeOut' },
+      }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true, margin: '0px 0px -200px 0px' }}
       className={`p-6 rounded-xl ${
