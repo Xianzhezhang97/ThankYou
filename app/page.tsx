@@ -4,10 +4,11 @@
 import { useState } from 'react';
 import { Button } from '@/stories/Components/Button/Button';
 import { motion } from 'framer-motion';
-import { Moon, Sun, Heart, Trophy, Dock } from 'lucide-react';
+import { Moon, Sun, Heart, Dock, ScreenShare } from 'lucide-react';
 import { LinkedInAvatar } from './components/LinkedInAvatar';
 import { StatsCard } from './components/StatsCard';
 import { PersonCard } from './components/PersonCard';
+import { WaterfallLayout } from './components/WaterfallLayout';
 import { getStats } from './data/stats';
 import messages from './data/messages.json';
 import type { ContentMessages } from './types';
@@ -80,13 +81,13 @@ export default function OfferAnnouncement() {
         </Button>
       </div>
 
-      <div className='max-w-6xl pt-24  mx-auto px-6 py-12'>
+      <div className='pt-24  mx-auto px-6 py-12'>
         {/* 头部标题区域 */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className='text-center mb-12'
+          className='text-center  mb-12'
         >
           <div className='flex justify-center items-end gap-4 mb-6'>
             <LinkedInAvatar
@@ -113,7 +114,7 @@ export default function OfferAnnouncement() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className='grid  [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))] gap-6 mb-12 '
+          className='grid max-w-6xl mx-auto [grid-template-columns:repeat(auto-fill,minmax(250px,1fr))] gap-6 mb-12 '
         >
           {stats.map((stat, index) => (
             <StatsCard
@@ -131,8 +132,8 @@ export default function OfferAnnouncement() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '0px 0px -200px 0px' }}
-          transition={{ duration: 1}}
-          className='flex gap-4  items-center my-12 '
+          transition={{ duration: 1 }}
+          className='flex gap-4 max-w-6xl mx-auto items-center my-12 '
         >
           <div
             className={`p-xl rounded-xl border  ${
@@ -150,31 +151,48 @@ export default function OfferAnnouncement() {
         </motion.div>
 
         {/* 感谢部分 */}
-        <motion.div
-
-          className='mb-12'
-        >
-          <div className='flex items-center gap-3 mb-8'>
+        <motion.div className='mb-12'>
+          <div className='flex max-w-6xl mx-auto items-center gap-3 mb-8'>
             <Heart className='w-8 h-8 text-red-500' />
             <h2 className='text-3xl font-bold'>
               {currentMessages.thanksTitle}
             </h2>
           </div>
 
-          <div className='grid md:grid-cols-2 lg:grid-cols-2 gap-6'>
+          <WaterfallLayout
+            minColumnWidth={{
+              xl: 320,
+              lg: 300,
+              md: 280,
+              sm: 260,
+            }}
+            gap={{
+              sm: 24,
+              md: 28,
+              lg: 32,
+              xl: 32,
+            }}
+          >
             {currentMessages.people.map((person, index) => (
-              <PersonCard
-                key={person.name}
-                person={person}
-                index={index}
-                darkMode={darkMode}
-              />
+              <motion.div key={index} className='w-full '>
+                <PersonCard
+                  key={person.name}
+                  person={person}
+                  index={index}
+                  darkMode={darkMode}
+                />
+              </motion.div>
             ))}
-          </div>
+          </WaterfallLayout>
         </motion.div>
-
         {/* 结语 */}
-        <motion.div>
+        <motion.div className='max-w-6xl mx-auto'>
+          <div className='flex items-center gap-3 mb-8'>
+            <Heart className='w-8 h-8 text-red-500' />
+            <h2 className='text-3xl font-bold'>
+              {currentMessages.signatureTitle}
+            </h2>
+          </div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -190,11 +208,11 @@ export default function OfferAnnouncement() {
               }`}
             >
               <div className='prose dark:prose-invert max-w-none'>
-                <p className='text-lg leading-relaxed whitespace-pre-line'>
+                <div className='text-lg leading-relaxed whitespace-pre-line'>
                   <p className='text-base md:text-md lg:text-lg leading-relaxed mb-6'>
                     {currentMessages.finalMessage}
                   </p>
-                </p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -202,7 +220,7 @@ export default function OfferAnnouncement() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '0px 0px -200px 0px' }}
-            transition={{ duration: 1}}
+            transition={{ duration: 1 }}
             className={` p-xl rounded-xl border  ${
               darkMode
                 ? 'bg-gradient-to-r from-blue-900 to-indigo-900 border-blue-700'
@@ -221,12 +239,12 @@ export default function OfferAnnouncement() {
                 <LinkedInAvatar
                   name='Scott'
                   src='https://img.picgo.net/2025/06/05/profile-copy46ff46bbb252fb3c.png'
-                  url='https://www.linkedin.com/in/scottcheung1110/'
+                  // url='https://www.linkedin.com/in/scottcheung1110/'
                 />
                 <div className='flex-1'>
                   <h3 className='text-xl font-bold mb-1'>Scott Cheung</h3>
                   <div className='flex items-center gap-2 mb-2'>
-                    <Trophy className='w-4 h-4 text-yellow-500' />
+                    <ScreenShare className='w-4 h-4 text-yellow-500' />
                     <span
                       className={`text-sm font-medium ${
                         darkMode ? 'text-yellow-400' : 'text-yellow-600'

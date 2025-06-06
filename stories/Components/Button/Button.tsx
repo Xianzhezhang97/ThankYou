@@ -1,3 +1,5 @@
+/** @format */
+
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { Loader } from 'lucide-react';
 import React from 'react';
@@ -5,16 +7,15 @@ import { cn } from '@/utils/cn';
 import '@/styles/globals.css';
 
 export interface ButtonProps
-  extends Omit<HTMLMotionProps<'button'>, 'children'>
-{
+  extends Omit<HTMLMotionProps<'button'>, 'children'> {
   variant?:
-  | 'primary'
-  | 'secondary'
-  | 'outline'
-  | 'ghost'
-  | 'icon'
-  | 'link'
-  | 'full';
+    | 'primary'
+    | 'secondary'
+    | 'outline'
+    | 'ghost'
+    | 'icon'
+    | 'link'
+    | 'full';
   size?: 'sm' | 'md' | 'lg' | 'noPadding';
   isLoading?: boolean;
   leftIcon?: React.ReactNode;
@@ -23,7 +24,7 @@ export interface ButtonProps
   children?: React.ReactNode;
   disabled?: boolean;
   isPadding?: boolean;
-  onClick?: ( event: React.MouseEvent<HTMLButtonElement> ) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const variantStyles = {
@@ -141,38 +142,55 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ...props
     },
     ref,
-  ) =>
-  {
-    const handleClick = ( event: React.MouseEvent<HTMLButtonElement> ) =>
-    {
-      if ( !disabled && !isLoading && onClick )
-      {
-        onClick( event );
+  ) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (!disabled && !isLoading && onClick) {
+        onClick(event);
       }
     };
 
     return (
       <motion.button
-        ref={ ref }
+        ref={ref}
         layout
-        whileTap={ { scale: 0.99 } }
-        whileHover={ { scale: 1.01 } }
-        transition={ { duration: 0.3, type: 'spring', stiffness: 100, damping: 10, bounce: 0.2 } }
-        className={ cn(
+        whileTap={{ scale: 0.99 }}
+        whileHover={{ scale: 1.01 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className={cn(
           'flex items-center justify-center font-medium  focus:outline-none disabled:cursor-not-allowed disabled:opacity-70',
-          variantStyles[ variant ],
+          variantStyles[variant],
           fullWidth && 'w-full',
           className,
-        ) }
-        disabled={ disabled || isLoading }
-        onClick={ handleClick }
-        { ...props }
+        )}
+        disabled={disabled || isLoading}
+        onClick={handleClick}
+        {...props}
       >
-        <div className={ cn( 'inline-flex items-center ratio-1/1',
-        ) }>
-          { isPadding && <div className='p-3'>{ isLoading ? ( <div className='animate-spin'><Loader /></div> ) : leftIcon && <span className=''>{ leftIcon }</span> }</div> }
-          <div className={ cn( 'flex items-center justify-center', ( !leftIcon && !rightIcon && !isLoading ) && sizeStyles[ size ] ) }>{ children }</div>
-          { isPadding && <div className='p-3'>{ rightIcon && <span className=''>{ rightIcon }</span> }</div> }
+        <div className={cn('inline-flex items-center ratio-1/1')}>
+          {isPadding && (
+            <div className='p-3'>
+              {isLoading ? (
+                <div className='animate-spin'>
+                  <Loader />
+                </div>
+              ) : (
+                leftIcon && <span className=''>{leftIcon}</span>
+              )}
+            </div>
+          )}
+          <div
+            className={cn(
+              'flex items-center justify-center',
+              !leftIcon && !rightIcon && !isLoading && sizeStyles[size],
+            )}
+          >
+            {children}
+          </div>
+          {isPadding && (
+            <div className='p-3'>
+              {rightIcon && <span className=''>{rightIcon}</span>}
+            </div>
+          )}
         </div>
       </motion.button>
     );

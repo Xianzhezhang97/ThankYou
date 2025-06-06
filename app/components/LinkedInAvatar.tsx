@@ -1,3 +1,5 @@
+/** @format */
+
 import { Linkedin } from 'lucide-react';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -44,7 +46,7 @@ export const LinkedInAvatar = ({
   const shouldShowInitials = !src || showFallback;
 
   return (
-    <Link href={url || ''} target='_blank'>
+    <div>
       <div
         className={`${size} rounded-full ${
           shouldShowInitials ? getAvatarColor(name) : ''
@@ -60,12 +62,12 @@ export const LinkedInAvatar = ({
         )}
         {shouldShowInitials && initials}
 
-        {name && (
+        {name && url && (
           <div className='absolute -bottom-1 -right-1 md:w-6 md:h-6 size-4 p-1 md:p-1.5 bg-blue-600 rounded-full flex items-center justify-center dark:bg-blue-600 dark:text-white'>
             <Linkedin className='md:size-4 size-3 text-white' />
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 };

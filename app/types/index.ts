@@ -1,3 +1,5 @@
+/** @format */
+
 export interface Person {
   name: string;
   award: string;
@@ -14,4 +16,5 @@ export interface ContentMessages {
   people: Person[];
   finalMessage: string;
   signature: string;
+  signatureTitle: string;
 }
