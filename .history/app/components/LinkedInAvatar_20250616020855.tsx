@@ -18,26 +18,30 @@ export const LinkedInAvatar = ({
   url,
 }: LinkedInAvatarProps) => {
   const [showFallback, setShowFallback] = useState(false);
-  const [isLinkValid, setIsLinkValid] = useState(false);
+  const [isLinkValid, setIsLinkValid] = useState(true);
 
-  // Check if the URL is valid
+  // Check if the URL is valid (optional)
   useEffect(() => {
     if (url) {
-      try {
-        // Basic validation: Check if it's a properly formatted URL
-        const urlObj = new URL(url);
-        // Consider it valid if it exists and has a supported format
-        const isLinkedIn = urlObj.hostname.includes('linkedin.com');
-        const hasValidExtension = !url.endsWith('.png') || src; // Don't count PNG URLs as invalid if we have a src image
+      const checkUrl = async () => {
+        try {
+          // This is just a simple check - in production you might want to use a different approach
+          // as direct fetch might be blocked by CORS
+          const response = await fetch(url, {
+            method: 'HEAD',
+            mode: 'no-cors',
+          });
+          setIsLinkValid(true);
+        } catch (error) {
+          setIsLinkValid(false);
+        }
+      };
 
-        setIsLinkValid(isLinkedIn);
-      } catch (error) {
-        setIsLinkValid(false);
-      }
+      checkUrl();
     } else {
       setIsLinkValid(false);
     }
-  }, [url, src]);
+  }, [url]);
 
   const getAvatarColor = (name: string) => {
     const colors = [
@@ -63,8 +67,8 @@ export const LinkedInAvatar = ({
     .substring(0, 2)
     .toUpperCase();
 
-  // Show initials if no src, or image failed to load
-  const shouldShowInitials = !src || showFallback;
+  // Show initials if no src, or image failed to load, or link is invalid
+  const shouldShowInitials = !src || showFallback || !isLinkValid;
 
   return (
     <div>
@@ -85,9 +89,7 @@ export const LinkedInAvatar = ({
 
         {name && url && isLinkValid && (
           <div className='absolute -bottom-1 -right-1 md:w-6 md:h-6 size-4 p-1 md:p-1.5 bg-blue-600 rounded-full flex items-center justify-center dark:bg-blue-600 dark:text-white'>
-            <Link href={url} target='_blank' rel='noopener noreferrer'>
-              <Linkedin className='md:size-4 size-3 text-white' />
-            </Link>
+            <Linkedin className='md:size-4 size-3 text-white' />
           </div>
         )}
       </div>
